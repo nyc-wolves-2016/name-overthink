@@ -1,0 +1,5 @@
+<% @user.questions.each do |question| %>
+
+  <%= erb :'shared/_errors', locals: {errors: @errors}, layout: false %>
+
+<% end %>

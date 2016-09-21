@@ -10,11 +10,16 @@ post '/users/new' do
 end
 
 get '/users/new' do
-    erb :'/users/_new'
+  erb :'/users/_new'
 
 end
 
 get '/users/:id' do
+  require_user
+  @user = current_user
+end
+
+post '/users/login' do
 
 end
 
