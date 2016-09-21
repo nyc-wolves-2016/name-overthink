@@ -21,14 +21,6 @@ end
     user_id: rand(1..20))
 end
 
-# 20.times do
-#   comment = Comment.create!(
-#     content: Faker::Hipster.sentence,
-#     question_id: rand(1..20),
-#     commentable_id: rand(1..20),
-#     commentable_type: ["Answer", "Question"].sample,
-#     user_id: rand(1..20))
-# end
 
 
 u= User.create(first_name: "boe", last_name: "jenkins", username: "yaBoi", email: "jaBoi@gmail.com", password: "password")
