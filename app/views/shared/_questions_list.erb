@@ -1,7 +1,7 @@
 <div class="container">
-	<h1>Questions:</h1>
+
 		<ul class="questionsList">
-		<p><% @questions.each do |question| %></p>
+		<p><% questions.each do |question| %></p>
 			<li><a href="/questions/<%= question.id %>"><%= question.title %></a></li>
 		<% end %>
 		</ul>

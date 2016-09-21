@@ -20,7 +20,7 @@
 </head>
 <body>
   <nav>
-    <% if !logged_in %>
+    <% if !logged_in? %>
       <form action="/users/login" method="post">
         <input type="text" name="email" placeholder="e-mail">
         <input type="password" name="password" placeholder="Password">
@@ -28,6 +28,11 @@
       </form>
     <% end %>
   </nav>
+  <% if @error %>
+    <%= @error %>
+  <% end %>
+  <%= erb :'shared/_errors', locals: {errors: @errors}, layout: false %>
+
   <%= yield %>
 </body>
 </html>

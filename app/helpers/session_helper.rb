@@ -8,5 +8,5 @@ end
 
 
 def require_user
-  redirect '/login' unless logged_in?
+  redirect '/' unless logged_in?
 end
