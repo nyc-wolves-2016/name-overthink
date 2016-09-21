@@ -9,26 +9,41 @@ end
 
 20.times do
   question = Question.create!(
-    content: Faker::Hipster.sentence,
+    content: Faker::Lorem.sentence,
     title: Faker::Name.title,
     user_id: rand(1..20))
 end
 
 20.times do
   answer = Answer.create!(
-    content: Faker::Hipster.sentence,
+    content: Faker::Lorem.sentence,
     question_id: rand(1..20),
     user_id: rand(1..20))
 end
 
-20.times do
-  comment = Comment.create!(
-    content: Faker::Hipster.sentence,
-    question_id: rand(1..20),
-    commentable_id: rand(1..20),
-    commentable_type: ["Answer", "Question"].sample,
-    user_id: rand(1..20))
-end
+# 20.times do
+#   comment = Comment.create!(
+#     content: Faker::Lorem.sentence,
+#     # question_id: rand(1..20),
+#     commentable_id: rand(1..20),
+#     commentable_type: ["Answer", "Question"].sample,
+#     user_id: rand(1..20))
+# end
+
+
+# User.all.each do |user|
+#     user.questionscreate()
+# end
+
+
+
+
+
+
+
+
+
+
 
 
 u= User.create(first_name: "boe", last_name: "jenkins", username: "yaBoi", email: "jaBoi@gmail.com", password: "password")
