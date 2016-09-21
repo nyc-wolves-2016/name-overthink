@@ -1,0 +1,31 @@
+<div class="container">
+	<h1><%= @question.title %></h1>
+
+		<p>
+			<%= @question.content %>
+		</p>
+
+	<ul id="#question-comments">
+		<% @question.comments.each do |comment| %>
+			<li><%= comment.content %></li>
+		<% end %>
+	</ul>
+
+<hr>
+
+		<ul>
+			<% @question.answers.each do |answer| %>
+				<li><%= answer.content %></li>
+
+					<ul>
+						<% answer.comments.each do |comment| %>
+							<li><%= comment.content %></li>
+						<% end %>
+					</ul>
+
+			<% end %>
+		</ul>
+
+
+
+</div>
