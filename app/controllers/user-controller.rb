@@ -14,17 +14,32 @@ get '/users/new' do
 
 end
 
-get '/users/:id' do
-  require_user
-  @user = current_user
-end
+
 
 post '/users/login' do
-
+  user = User.find_by(email: params[:email])
+  if user && user.authenticate(params[:password])
+    session[:user_id] = user.id
+    redirect "/users/#{user.id}"
+  else
+    @error = "Invalid email or password"
+    @questions = Question.all
+    erb :index
+  end
 end
 
-post '/users/logout' do
-
+get '/users/logout' do
+  require_user
+  session.clear
+  redirect '/'
 end
 
-
+get '/users/:id' do
+  require_user
+  # if current_user.id == params[:id]
+    @user = User.find(params[:id])
+    erb :'/users/show'
+  # else
+  #   redirect '/'
+  # end
+end
