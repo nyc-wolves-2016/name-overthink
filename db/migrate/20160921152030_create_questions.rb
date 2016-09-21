@@ -6,7 +6,7 @@ class CreateQuestions < ActiveRecord::Migration
       t.integer :user_id, null: false
       t.integer :best_answer_id
 
-      t.timestamps, null: false
+      t.timestamps
     end
   end
 end

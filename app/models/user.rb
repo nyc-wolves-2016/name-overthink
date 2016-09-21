@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  validates :first_name, :last_name, :username, :email, :timestamps, presence: true
+  validates :first_name, :last_name, :username, :email, presence: true
   validates :username, uniqueness: true
 
   validates :email, uniqueness: { message: "has already been used." }, format: { with: /.+\@+.+[.]/, message: "must be a valid email address"}
