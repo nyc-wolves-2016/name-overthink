@@ -1,0 +1,20 @@
+<%= erb :'shared/_errors', locals: {errors: @errors}, layout: false %>
+
+<form action="/users/new" method="post">
+  <label for="first_name">First Name:</label>
+  <input type="text" name="user[first_name]">
+
+  <label for="last_name">Last Name:</label>
+  <input type="text" name="user[last_name]">
+
+  <label for="username">Username:</label>
+  <input type="text" name="user[username]">
+
+  <label for="email">E-mail:</label>
+  <input type="text" name="user[email]">
+
+  <label for="password">Password:</label>
+  <input type="password" name="user[password]">
+
+  <input type="submit" value="Register">
+</form>
