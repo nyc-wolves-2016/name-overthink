@@ -11,7 +11,6 @@ end
 
 get '/users/new' do
   erb :'/users/_new'
-
 end
 
 
@@ -36,10 +35,6 @@ end
 
 get '/users/:id' do
   require_user
-  # if current_user.id == params[:id]
-    @user = User.find(params[:id])
-    erb :'/users/show'
-  # else
-  #   redirect '/'
-  # end
+  @user = User.find_by(id: params[:id])
+  erb :'/users/show'
 end
