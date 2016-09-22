@@ -1,4 +1,4 @@
-10.times do
+8.times do
   user = User.create!(
     username: Faker::Internet.user_name,
     first_name: Faker::Name.first_name,
@@ -8,7 +8,7 @@
 end
 
 User.all.each do |user|
-  5.times do
+  3.times do
   user.questions.create(
     content: Faker::Lorem.sentence,
     title: Faker::Name.title
@@ -19,16 +19,16 @@ end
 Question.all.each do |question|
   user_array = (1..User.all.count).to_a
 
-  rand(5..8).times do
+  rand(2..3).times do
 
     question.answers.create(
       content: Faker::Lorem.sentence,
-      user_id: rand(1..10)
+      user_id: rand(1..8)
     )
 
     question.comments.create(
       content: Faker::Lorem.sentence,
-      user_id: rand(1..10)
+      user_id: rand(1..8)
     )
 
     question.votes.create(
@@ -42,11 +42,11 @@ end
 Answer.all.each do |answer|
   user_array = (1..User.all.count).to_a
 
-  rand(5..8).times do
+  rand(2..3).times do
 
     answer.comments.create(
       content: Faker::Lorem.sentence,
-      user_id: rand(1..10)
+      user_id: rand(1..8)
     )
 
     answer.votes.create(

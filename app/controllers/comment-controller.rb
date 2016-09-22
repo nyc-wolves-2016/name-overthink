@@ -23,11 +23,17 @@ post '/questions/:question_id/answer/:answer_id/new' do
 
     redirect "/questions/#{params[:question_id]}"
   else
-    @answer_errors = @answer_comment.errors.full_messages
+    @answer_comment_errors = @answer_comment.errors.full_messages
     @bad_answer_id = answer.id
     answer.comments.delete(@answer_comment)
     erb :'questions/show'
   end
-
 end
 
+delete '/comments/:comment_id' do
+  comment = Comment.find_by(id: params[:comment_id])
+  user_id = comment.user_id
+  comment.destroy
+
+  redirect "/users/#{user_id}"
+end

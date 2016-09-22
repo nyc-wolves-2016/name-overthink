@@ -19,7 +19,7 @@
       <a href="/questions/<%= question.id %>"><%= question.title %></a>
 
       </li>
-
+        <%= erb :'shared/_delete_button', locals: {item: question}, layout: false %>
 		<% end %>
 		</ul>
 </div>

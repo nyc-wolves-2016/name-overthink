@@ -16,10 +16,10 @@ end
 get '/users/login' do
   if logged_in?
     redirect "/users/#{current_user.id}"
-  else  
+  else
     erb :'/session/login'
-  end   
-end   
+  end
+end
 
 post '/users/login' do
   user = User.find_by(email: params[:email])
@@ -42,5 +42,6 @@ end
 get '/users/:id' do
   require_user
   @user = User.find_by(id: params[:id])
+  # binding.pry
   erb :'/users/show'
 end
