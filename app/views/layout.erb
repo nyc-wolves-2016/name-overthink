@@ -28,14 +28,18 @@
           <% else %>
             <li class="pipe-separate t-white left"><a href="/users/new">Register</a></li>
             <li class="pipe-separate t-white left"><a href="/users/login">Login</a></li>
-          <%end%>
+          <% end %>
           <li class="pipe-separate t-white left"><a href="/">Home</a></li>
         </ul>
       </nav>
-    
- 
+
+
+
+
+
+
 </div>
-  
+
   <%= erb :'shared/_errors', locals: {errors: @errors}, layout: false %>
 
   <%= yield %>

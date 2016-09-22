@@ -42,7 +42,7 @@ end
 Answer.all.each do |answer|
   user_array = (1..User.all.count).to_a
 
-  rand(5..8).times do 
+  rand(5..8).times do
 
     answer.comments.create(
       content: Faker::Lorem.sentence,
@@ -60,14 +60,14 @@ end
 Comment.all.each do |comment|
   user_array = (1..User.all.count).to_a
 
-  rand(1..3).times do 
+  rand(1..3).times do
 
   comment.votes.create(
       value: [1,-1].sample,
       user_id: user_array.delete(user_array.sample)
     )
   end
-  
+
 end
 
 

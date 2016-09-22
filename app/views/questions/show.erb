@@ -1,32 +1,46 @@
 <div class="container">
 	<h1><%= @question.title %></h1>
 
-		<p>
+		<p style="color:blue">
 			<%= @question.content %>
 		</p>
 
 	<ul id="#question-comments">
 		<% @question.comments.each do |comment| %>
 			<li><%= comment.content %> - votes: (<%= comment.votes.reduce(0) {|total, vote| total + vote.value } %>)</li>
+		<% end %><br>
+		<% if @errors %>
+			<% @errors.each do |error| %>
+				<%= error %>
+			<% end %>
 		<% end %>
 	</ul>
+		<form action='/questions/<%= @question.id %>/comments/new'method="post">
+			<label for="comment">Make a comment: </label>
+			<input type="text" name="content">
+			<input type="submit" value="Comment"><br>
+		</form>
 
 <hr>
 <h2>Answers:</h2>
 
 		<ul>
 			<% @question.answers.each do |answer| %>
-				<li><%= answer.content %></li>
-				<p>Comments:</p>
+				<li style="color:red"><%= answer.content %></li>
+				<p style="color:green">Comments:</p>
 
 					<ul>
 						<% answer.comments.each do |comment| %>
 							<li><%= comment.content %> - votes: (<%= comment.votes.reduce(0) {|total, vote| total + vote.value } %>)</li>
 						<% end %>
 					</ul>
+		<form action="'/questions/:question_id/comments/new'" method="post">
+			<label for="comment">Make a comment: </label>
+			<input type="text" name="comments[content]">
+			<input type="submit" value="Comment"><br>
+		</form>
 			<% end %>
 		</ul>
-
 
 
 </div>
