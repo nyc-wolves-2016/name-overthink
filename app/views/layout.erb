@@ -19,7 +19,19 @@
   <title></title>
 </head>
 <body>
-  <nav>
+    <div class="nav_container">
+      <nav class="nav_bar">
+        <ul class="horizontal">
+          <% if logged_in? %>
+            <li class="pipe-separate t-white left"><a href="/users/<%= current_user.id %>"><%= current_user.username %></a></li>
+            <li class="pipe-separate t-white left"><a href="/users/logout">Logout</a></li>
+          <% else %>
+            <li class="pipe-separate t-white left"><a href="/users/new">Register</a></li>
+            <li class="pipe-separate t-white left"><a href="/users/login">Login</a></li>
+          <%end%>
+          <li class="pipe-separate t-white left"><a href="/">Home</a></li>
+        </ul>
+      </nav>
     <% if !logged_in? %>
       <form action="/users/login" method="post">
         <input type="text" name="email" placeholder="e-mail">
@@ -28,6 +40,7 @@
       </form>
     <% end %>
   </nav>
+</div>
   <% if @error %>
     <%= @error %>
   <% end %>
