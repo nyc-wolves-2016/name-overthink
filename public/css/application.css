@@ -1,7 +1,7 @@
 body {
   counter-reset:section;
   background-color: #F6F6EF;
-  font-family: Verdana;
+  font-family: helvetica;
   max-width: 700px;
   margin: 0 auto;
 }
@@ -125,3 +125,70 @@ form#posts input[type='submit'] {
   vertical-align: sub;
   padding: 1px 0px 0px 0px;
 }
+
+li {
+  /*display: inline;*/
+}
+
+ul.horizontal {
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+  display: inline-block;
+  list-style-type: none;
+  padding: 15px;
+}
+
+li a, a:visited {
+  color: #6699ff;
+}
+
+li a:hover {
+  color: #FFFFFF;
+}
+
+.pipe-separate {
+  padding-left: 1em;
+  padding-right: 1em;
+  border-right: 1px solid;
+}
+
+.pipe-separate:first-of-type {
+  padding-left: 10;
+}
+
+.pipe-separate:last-of-type {
+  padding-right: 0;
+  border-right: none;
+}
+
+.t-black {
+  color: #000000;
+}
+
+.container {
+    margin: auto;
+    width: 100%;
+    border: 2px solid black;
+    padding: 30px;
+    text-align: left;
+}
+
+table, th, td {
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+    border-spacing: 10px;
+    text-align: left;
+    margin-left: 30px;
+}
+
+h1 {
+  margin-left: 20px;
+}
+
+.nav
