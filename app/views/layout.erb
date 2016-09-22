@@ -25,6 +25,7 @@
           <% if logged_in? %>
             <a class="nav_links" href="/users/<%= current_user.id %>"><%= current_user.username %></a>
             <a class="nav_links"href="/users/logout">Logout</a>
+            <a class="nav_links" href="/questions/new">Ask a Question</a>
           <% else %>
             <a class="nav_links"href="/users/new">Register</a>
             <a class="nav_links"href="/users/login">Login</a>
