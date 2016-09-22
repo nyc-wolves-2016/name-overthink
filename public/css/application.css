@@ -2,34 +2,15 @@ body {
   counter-reset:section;
   background-color: #F6F6EF;
   font-family: helvetica;
-  max-width: 700px;
+  max-width: 70%;
   margin: 0 auto;
 }
 
 header {
   background-color: #F4712D;
-  padding: 5px 5px;
+  width:100%;
 }
 
-header h1 {
-  font-size: 11pt;
-  display: inline;
-}
-
-header p {
-  margin-left: 5px ;
-  font-size: 10pt;
-  display: inline;
-}
-
-header p a {
-  color: black;
-  text-decoration: none;
-}
-
-header p a:nth-child(n + 2):before {
-  content: " | ";
-}
 
 article {
   margin: 5px 5px;
@@ -49,19 +30,19 @@ article a.vote-button {
 }
 
 
-article h2 {
+/*article h2 {
   display: inline;
   font-size: 10pt;
-}
+}*/
 
-article:before {
+/*article:before {
   counter-increment: section;
   color: #8C8C8C;
   font-size: 10pt;
   content: counter(section) ". ";
-}
+}*/
 
-article h2 a {
+/*article h2 a {
   text-decoration: none;
   color: black;
 }
@@ -70,7 +51,7 @@ article p {
   color: #8C8C8C;
   font-size: 7pt;
   margin: 3px 30px;
-}
+}*/
 
 article p span.points:after {
   content: " points";
@@ -132,19 +113,19 @@ form#posts input[type='submit'] {
   padding: 1px 0px 0px 0px;
 }
 
-li {
-  /*display: inline;*/
+nav {
+  background-color: #333;
 }
 
-ul.horizontal {
+/*ul.horizontal {
     height: 50px;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #333;
-}
+}*/
 
-li {
+li.nav_bar {
   display: inline-block;
   list-style-type: none;
   padding: 15px;
@@ -154,11 +135,8 @@ li a, a:visited {
   color: #6699ff;
 }
 
-li a:hover {
-  color: #FFFFFF;
-}
 
-.pipe-separate {
+/*.pipe-separate {
   padding-left: 1em;
   padding-right: 1em;
   border-right: 1px solid;
@@ -175,7 +153,7 @@ li a:hover {
 
 .t-black {
   color: #000000;
-}
+}*/
 
 .container {
     margin: auto;
@@ -185,14 +163,14 @@ li a:hover {
     text-align: left;
 }
 
-table, th, td {
+/*table, th, td {
     border-bottom: 2px solid black;
     border-top: 2px solid black;
     border-spacing: 10px;
     text-align: left;
     margin-left: 30px;
 }
-
+*/
 h1 {
   margin-left: 20px;
 }
@@ -200,4 +178,11 @@ h1 {
 .thumbs {
   letter-spacing: 2px;
 }
-.nav
+
+.nav_links {
+  display: inline-block;
+  padding:10px;
+}
+.nav_links:hover {
+  color: #FFFFFF;
+}

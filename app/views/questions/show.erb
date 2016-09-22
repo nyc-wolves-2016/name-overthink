@@ -9,8 +9,8 @@
 		<% @question.comments.each do |comment| %>
 			<li><%= comment.content %> - votes: (<%= comment.votes.reduce(0) {|total, vote| total + vote.value } %>)</li>
 		<% end %><br>
-		<% if @errors %>
-			<% @errors.each do |error| %>
+		<% if @question_errors %>
+			<% @question_errors.each do |error| %>
 				<%= error %>
 			<% end %>
 		<% end %>
@@ -33,14 +33,19 @@
 						<% answer.comments.each do |comment| %>
 							<li><%= comment.content %> - votes: (<%= comment.votes.reduce(0) {|total, vote| total + vote.value } %>)</li>
 						<% end %>
-					</ul>
-		<form action="'/questions/:question_id/comments/new'" method="post">
+					</ul><br>
+		</ul>
+		<% if @answer_errors && @bad_answer_id == answer.id %>
+				<% @answer_errors.each do |error| %>
+				<%= error %>
+			<% end %>
+		<% end %>
+		<form action='/questions/<%= @question.id %>/answer/<%= answer.id %>/new' method="post">
 			<label for="comment">Make a comment: </label>
-			<input type="text" name="comments[content]">
+			<input type="text" name="content">
 			<input type="submit" value="Comment"><br>
 		</form>
 			<% end %>
-		</ul>
 
 
 </div>
