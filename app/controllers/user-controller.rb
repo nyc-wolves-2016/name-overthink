@@ -13,7 +13,13 @@ get '/users/new' do
   erb :'/users/_new'
 end
 
-
+get '/users/login' do
+  if logged_in?
+    redirect "/users/#{current_user.id}"
+  else  
+    erb :'/session/login'
+  end   
+end   
 
 post '/users/login' do
   user = User.find_by(email: params[:email])
@@ -22,9 +28,8 @@ post '/users/login' do
     session[:user_id] = user.id
     redirect "/users/#{user.id}"
   else
-    @error = "Invalid email or password"
-    @questions = Question.all
-    erb :index
+    @errors = ["Invalid email or password"]
+    erb :'/session/login', locals: {errors: @errors}
   end
 end
 

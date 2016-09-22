@@ -4,4 +4,14 @@ class Vote < ActiveRecord::Base
   belongs_to :user
 
   validates :value, :user_id, :voteable_id, :voteable_type, presence: true
+  validate :has_voted?
+
+  def has_voted?
+    user = User.find(self.user_id)
+    if user.votes.any? { |vote| vote.voteable_id == self.voteable_id && vote.voteable_type == self.voteable_type }
+      errors.add(:user, "already voted.")
+    end
+  end
+
 end
+
