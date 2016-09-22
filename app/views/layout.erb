@@ -23,13 +23,13 @@
       <nav class="nav_bar">
         <ul class="horizontal">
           <% if logged_in? %>
-            <li class="pipe-separate t-white left"><a href="/users/<%= current_user.id %>"><%= current_user.username %></a></li>
-            <li class="pipe-separate t-white left"><a href="/users/logout">Logout</a></li>
+            <li class="nav_links"><a href="/users/<%= current_user.id %>"><%= current_user.username %></a></li>
+            <li class="nav_links"><a href="/users/logout">Logout</a></li>
           <% else %>
-            <li class="pipe-separate t-white left"><a href="/users/new">Register</a></li>
-            <li class="pipe-separate t-white left"><a href="/users/login">Login</a></li>
+            <li class="nav_links"><a href="/users/new">Register</a></li>
+            <li class="nav_links"><a href="/users/login">Login</a></li>
           <% end %>
-          <li class="pipe-separate t-white left"><a href="/">Home</a></li>
+          <li class="nav_links"><a href="/">Home</a></li>
         </ul>
       </nav>
 
