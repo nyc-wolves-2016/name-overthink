@@ -8,13 +8,18 @@
 	<ul id="#question-comments">
 		<% @question.comments.each do |comment| %>
 			<li><%= comment.content %> - votes: (<%= comment.votes.reduce(0) {|total, vote| total + vote.value } %>)</li>
+		<% end %><br>
+		<% if @errors %>
+			<% @errors.each do |error| %>
+				<%= error %>
+			<% end %>
 		<% end %>
-		<form action="'/questions/:question_id/comments/new'" method="post">
+	</ul>
+		<form action='/questions/<%= @question.id %>/comments/new'method="post">
 			<label for="comment">Make a comment: </label>
-			<input type="text" name="comments[content]">
+			<input type="text" name="content">
 			<input type="submit" value="Comment"><br>
 		</form>
-	</ul>
 
 <hr>
 <h2>Answers:</h2>
