@@ -20,13 +20,7 @@
       </form><a href="/questions/<%= question.id %>"><%= question.title %></a>
 
       </li>
-      <li>
-        <form method="post" action="/questions/<%= question.id %>" class="inline">
-          <input type="hidden" name="_method" value="delete">
-          <input type="submit" value="delete">
-        </form>
-      </li>
-
+        <%= erb :'shared/_delete_button', locals: {item: question}, layout: false %>
 		<% end %>
 		</ul>
 </div>

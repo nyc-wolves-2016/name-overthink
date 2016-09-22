@@ -9,3 +9,11 @@ post '/questions/:question_id/answers/new' do
     erb :'questions/show'
   end
 end
+
+delete '/answers/:answer_id' do
+  answer = Answer.find_by(id: params[:answer_id])
+  user_id = answer.user_id
+  answer.destroy
+
+  redirect "/users/#{user_id}"
+end
