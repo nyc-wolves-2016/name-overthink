@@ -27,6 +27,11 @@
 		<ul>
 			<% @question.answers.each do |answer| %>
 				<li style="color:red"><%= answer.content %></li>
+				<% if answer.id == @question.best_answer_id %>
+					<div>Marked as best answer</div>
+				<% end %>
+				<%= erb :'shared/_best_answer', locals: {item: @question, answer: answer}, layout: false %>
+
 				<p style="color:green">Comments:</p>
 
 					<ul>
