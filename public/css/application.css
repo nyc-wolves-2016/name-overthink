@@ -27,9 +27,15 @@ article a.vote-button {
   padding: 0;
   border: none;
   background: none;
+  display: inline;
+  margin-right: 3px;
 }
 
-
+.vote_count {
+  display: inline-block;
+  width: 25px;
+  text-align: center;
+}
 /*article h2 {
   display: inline;
   font-size: 10pt;
@@ -133,6 +139,10 @@ li.nav_bar {
 
 li a, a:visited {
   color: #6699ff;
+}
+
+ul {
+  list-style: none;
 }
 
 
