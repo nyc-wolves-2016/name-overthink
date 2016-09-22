@@ -13,5 +13,9 @@ class Vote < ActiveRecord::Base
     end
   end
 
+  def self.vote_count(votes)
+    votes.reduce(0) { |sum, vote| sum + vote.value }
+  end
+
 end
 

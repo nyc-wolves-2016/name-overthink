@@ -42,6 +42,12 @@ article a.vote-button {
   vertical-align: sub;
 }
 
+.thumbs_button {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
 
 article h2 {
   display: inline;
