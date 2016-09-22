@@ -7,7 +7,19 @@
 
 	<ul id="#question-comments">
 		<% @question.comments.each do |comment| %>
-			<li><%= comment.content %> - votes: (<%= comment.votes.reduce(0) {|total, vote| total + vote.value } %>)</li>
+			<li>
+				<form method="post" action='/votes/new' class="thumbs_button">
+        	<input type="hidden" name="comment_id" value="<%= comment.id %>">
+        	<button type="submit" name="value" value="up_vote" class="thumbs_button">&#128077</button>
+      	</form>
+      	
+      	<span class="vote_count"><%= Vote.vote_count(comment.votes) %></span>
+
+	      <form method="post" action='/votes/new' class="thumbs_button">
+	        <input type="hidden" name="comment_id" value="<%= comment.id %>">
+	        <button type="submit" name="value" value="down_vote" class="thumbs_button">&#128078</button>
+	      </form>	
+			<%= comment.content %></li>
 		<% end %><br>
 		<% if @question_errors %>
 			<% @question_errors.each do |error| %>
@@ -24,9 +36,23 @@
 <hr>
 <h2>Answers:</h2>
 
-		<ul>
 			<% @question.answers.each do |answer| %>
-				<li style="color:red"><%= answer.content %></li>
+		<ul>
+				<li style="color:red">
+					<form method="post" action='/votes/new' class="thumbs_button">
+	        	<input type="hidden" name="answer_id" value="<%= answer.id %>">
+	        	<button type="submit" name="value" value="up_vote" class="thumbs_button">&#128077</button>
+	      	</form>
+	      	
+	      	<span class="vote_count"><%= Vote.vote_count(answer.votes) %></span>
+
+		      <form method="post" action='/votes/new' class="thumbs_button">
+		        <input type="hidden" name="answer_id" value="<%= answer.id %>">
+		        <button type="submit" name="value" value="down_vote" class="thumbs_button">&#128078</button>
+		      </form>
+
+				<%= answer.content %>
+				</li>
 				<% if answer.id == @question.best_answer_id %>
 					<div>Marked as best answer</div>
 				<% end %>
@@ -36,7 +62,20 @@
 
 					<ul>
 						<% answer.comments.each do |comment| %>
-							<li><%= comment.content %> - votes: (<%= comment.votes.reduce(0) {|total, vote| total + vote.value } %>)</li>
+							<li>
+								<form method="post" action='/votes/new' class="thumbs_button">
+				        	<input type="hidden" name="comment_id" value="<%= comment.id %>">
+				        	<button type="submit" name="value" value="up_vote" class="thumbs_button">&#128077</button>
+				      	</form>
+				      	
+				      	<span class="vote_count"><%= Vote.vote_count(comment.votes) %></span>
+
+					      <form method="post" action='/votes/new' class="thumbs_button">
+					        <input type="hidden" name="comment_id" value="<%= comment.id %>">
+					        <button type="submit" name="value" value="down_vote" class="thumbs_button">&#128078</button>
+					      </form>
+							<%= comment.content %>
+							</li>
 						<% end %>
 					</ul><br>
 		</ul>
@@ -52,7 +91,6 @@
 		</form><br>
 			<% end %>
 
-
 		<% if @answer_errors %>
 			<% @answer_errors.each do |error| %>
 				<%= error %>
@@ -66,6 +104,3 @@
 		</form>
 
 </div>
-
-
-<!-- Reminder, turn vote count into method in model -->

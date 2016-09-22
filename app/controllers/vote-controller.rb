@@ -10,15 +10,45 @@ post '/votes/new' do
     value = 1
   else 
     value = -1
-  end    
-  puts "Yoooooooooooo"
-  puts value
-  vote = Question.find(params[:question_id]).votes.new(value: value, user_id: current_user.id)
-  if vote.save
-    redirect '/questions'
+  end   
+
+
+  if params[:question_id]
+    vote = Question.find_by(id: params[:question_id]).votes.new(value: value, user_id: current_user.id)
+
+    if vote.save
+      if request.xhr?
+        content_type :json
+        {question_id: params[:question_id], total_votes: Vote.vote_count(Question.find_by(id: params[:question_id]).votes)}.to_json
+      else
+      redirect '/questions'
+      end
+    else
+  #ajaxify?
+      @questions = Question.all
+      @errors = vote.errors.full_messages
+      erb :'/shared/_questions_list', locals: {questions: @questions}
+    end
   else
-    @questions = Question.all
-    @errors = vote.errors.full_messages
-    erb :'/shared/_questions_list', locals: {questions: @questions}
+    if params[:answer_id]
+      vote = Answer.find(params[:answer_id]).votes.new(value: value, user_id: current_user.id)
+      question_id = Answer.find(params[:answer_id]).question_id
+    else
+      vote = Comment.find(params[:comment_id]).votes.new(value: value, user_id: current_user.id)
+      question_id = find_question(Comment.find(params[:comment_id]))
+    end  
+    if vote.save
+      if request.xhr?
+
+
+      else
+      redirect "/questions/#{question_id}"
+      end
+    else
+  #ajaxify?
+      @question = Question.find(question_id)
+      @errors = vote.errors.full_messages
+      erb :'/questions/show'
+    end
   end
 end
