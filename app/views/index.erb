@@ -1,12 +1,3 @@
-  <% if @error %>
-    <%= @error %>
-  <% end %>
-    <% if !logged_in? %>
-      <form action="/users/login" method="post">
-        <input type="text" name="email" placeholder="e-mail">
-        <input type="password" name="password" placeholder="Password">
-        <input type="submit" value= "Sign in">
-      </form>
-    <% end %>
+
 <h1>Questions:</h1>
   <%= erb :'shared/_questions_list', locals: {questions: @questions}, layout: false %>
