@@ -32,18 +32,10 @@
           <li class="pipe-separate t-white left"><a href="/">Home</a></li>
         </ul>
       </nav>
-    <% if !logged_in? %>
-      <form action="/users/login" method="post">
-        <input type="text" name="email" placeholder="e-mail">
-        <input type="password" name="password" placeholder="Password">
-        <input type="submit" value= "Sign in">
-      </form>
-    <% end %>
-  </nav>
+    
+ 
 </div>
-  <% if @error %>
-    <%= @error %>
-  <% end %>
+  
   <%= erb :'shared/_errors', locals: {errors: @errors}, layout: false %>
 
   <%= yield %>
