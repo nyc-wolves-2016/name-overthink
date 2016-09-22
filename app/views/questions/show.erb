@@ -1,7 +1,7 @@
 <div class="container">
 	<h1><%= @question.title %></h1>
 
-		<p>
+		<p style="color:blue">
 			<%= @question.content %>
 		</p>
 
@@ -9,6 +9,11 @@
 		<% @question.comments.each do |comment| %>
 			<li><%= comment.content %> - votes: (<%= comment.votes.reduce(0) {|total, vote| total + vote.value } %>)</li>
 		<% end %>
+		<form action="'/questions/:question_id/comments/new'" method="post">
+			<label for="comment">Make a comment: </label>
+			<input type="text" name="comments[content]">
+			<input type="submit" value="Comment"><br>
+		</form>
 	</ul>
 
 <hr>
@@ -16,17 +21,21 @@
 
 		<ul>
 			<% @question.answers.each do |answer| %>
-				<li><%= answer.content %></li>
-				<p>Comments:</p>
+				<li style="color:red"><%= answer.content %></li>
+				<p style="color:green">Comments:</p>
 
 					<ul>
 						<% answer.comments.each do |comment| %>
 							<li><%= comment.content %> - votes: (<%= comment.votes.reduce(0) {|total, vote| total + vote.value } %>)</li>
 						<% end %>
 					</ul>
+		<form action="'/questions/:question_id/comments/new'" method="post">
+			<label for="comment">Make a comment: </label>
+			<input type="text" name="comments[content]">
+			<input type="submit" value="Comment"><br>
+		</form>
 			<% end %>
 		</ul>
-
 
 
 </div>
