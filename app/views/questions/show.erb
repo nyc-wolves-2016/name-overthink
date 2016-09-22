@@ -35,7 +35,7 @@
 						<% end %>
 					</ul><br>
 		</ul>
-		<% if @answer_errors %>
+		<% if @answer_errors && @bad_answer_id == answer.id %>
 				<% @answer_errors.each do |error| %>
 				<%= error %>
 			<% end %>

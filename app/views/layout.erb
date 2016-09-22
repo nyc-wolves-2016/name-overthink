@@ -19,19 +19,19 @@
   <title></title>
 </head>
 <body>
-    <div class="nav_container">
-      <nav class="nav_bar">
-        <ul class="horizontal">
+    <div>
+      <header>
+      <nav>
           <% if logged_in? %>
-            <li class="nav_links"><a href="/users/<%= current_user.id %>"><%= current_user.username %></a></li>
-            <li class="nav_links"><a href="/users/logout">Logout</a></li>
+            <a class="nav_links" href="/users/<%= current_user.id %>"><%= current_user.username %></a>
+            <a class="nav_links"href="/users/logout">Logout</a>
           <% else %>
-            <li class="nav_links"><a href="/users/new">Register</a></li>
-            <li class="nav_links"><a href="/users/login">Login</a></li>
+            <a class="nav_links"href="/users/new">Register</a>
+            <a class="nav_links"href="/users/login">Login</a>
           <% end %>
-          <li class="nav_links"><a href="/">Home</a></li>
-        </ul>
+          <a class="nav_links"href="/">Home</a>
       </nav>
+    </header>
 
 
 
@@ -39,8 +39,8 @@
 
 
 </div>
-
   <%= erb :'shared/_errors', locals: {errors: @errors}, layout: false %>
+
 
   <%= yield %>
 </body>

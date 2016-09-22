@@ -24,6 +24,7 @@ post '/questions/:question_id/answer/:answer_id/new' do
     redirect "/questions/#{params[:question_id]}"
   else
     @answer_errors = @answer_comment.errors.full_messages
+    @bad_answer_id = answer.id
     answer.comments.delete(@answer_comment)
     erb :'questions/show'
   end
