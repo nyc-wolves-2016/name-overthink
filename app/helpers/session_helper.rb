@@ -10,3 +10,4 @@ end
 def require_user
   redirect '/' unless logged_in?
 end
+

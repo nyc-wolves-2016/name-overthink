@@ -3,7 +3,8 @@
 
 		<ul class="questionsList">
 		<p><% questions.each do |question| %></p>
-			<li><a href="/questions/<%= question.id %>"><%= question.title %></a></li>
+			<li><span class= "thumbs">&#128077</span><span><%= question.votes.count %></span><span class= "thumbs">&#128078</span><a href="/questions/<%= question.id %>"><%= question.title %></a></li>
+
 		<% end %>
 		</ul>
 </div>
