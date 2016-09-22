@@ -12,17 +12,18 @@
 	</ul>
 
 <hr>
+<h2>Answers:</h2>
 
 		<ul>
 			<% @question.answers.each do |answer| %>
 				<li style="color:blue;"><%= answer.content %></li>
+				<p>Comments:</p>
 
 					<ul>
 						<% answer.comments.each do |comment| %>
 							<li style="color:green;"><%= comment.content %></li>
 						<% end %>
 					</ul>
-
 			<% end %>
 		</ul>
 
