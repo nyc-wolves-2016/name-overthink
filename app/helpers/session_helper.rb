@@ -18,3 +18,4 @@ def find_question(comment)
     Answer.find_by(id: comment.commentable_id).question_id
   end
 end
+
