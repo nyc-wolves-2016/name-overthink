@@ -1,0 +1,7 @@
+<% if user_logged_in?(item.user_id) %>
+        <li>
+          <form method="post" action="/answers/<%= answer.id %>" class="  inline">
+            <input type="submit" value="Best Answer?">
+          </form>
+        </li>
+<% end %>

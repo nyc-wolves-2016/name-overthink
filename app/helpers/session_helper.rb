@@ -19,3 +19,9 @@ def find_question(comment)
   end
 end
 
+def user_logged_in?(user_id) # Ensures a user who is not logged in can view home page
+  if logged_in?
+    true if current_user.id == user_id
+  end
+end
+

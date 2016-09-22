@@ -17,3 +17,13 @@ delete '/answers/:answer_id' do
 
   redirect "/users/#{user_id}"
 end
+
+
+post '/answers/:answer_id' do
+  answer = Answer.find_by(id: params[:answer_id])
+  question_id = answer.question_id
+  question = Question.find_by(id: question_id)
+  question.best_answer_id = answer.id
+  question.save
+  redirect "/questions/#{question_id}"
+end
