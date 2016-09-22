@@ -10,13 +10,21 @@
         <button type="submit" name="value" value="up_vote" class="thumbs_button">&#128077</button>
       </form>
 
+
       <%= Vote.vote_count(question.votes) %>
+
 
       <form method="post" action='/votes/new' class="">
         <input type="hidden" name="question_id" value="<%= question.id %>">
         <button type="submit" name="value" value="down_vote" class="thumbs_button">&#128078</button>
       </form><a href="/questions/<%= question.id %>"><%= question.title %></a>
 
+      </li>
+      <li>
+        <form method="post" action="/questions/<%= question.id %>" class="inline">
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" value="delete">
+        </form>
       </li>
 
 		<% end %>

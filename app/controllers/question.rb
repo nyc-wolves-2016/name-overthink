@@ -8,7 +8,7 @@ get '/questions/new' do
 end
 
 get '/questions/:id' do
-  @question = Question.find(params[:id])
+  @question = Question.find_by(id: params[:id])
   erb :'questions/show'
 end
 
@@ -23,3 +23,12 @@ post '/questions/new' do
     erb :'questions/new'
   end
 end
+
+delete '/questions/:question_id' do
+  question = Question.find_by(id: params[:question_id])
+  user_id = question.user_id
+  question.destroy
+
+  redirect "/users/#{user_id}"
+end
+
