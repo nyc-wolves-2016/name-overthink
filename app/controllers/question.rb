@@ -1,6 +1,6 @@
 get '/questions' do 
 	@questions = Question.all 
-	erb :'shared/_questions_list'
+	erb :'index'
 end
 
 get '/questions/:id' do

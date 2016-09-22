@@ -1,13 +1,13 @@
 <div class="container">
 	<h1><%= @question.title %></h1>
 
-		<p style="color:red;">
+		<p>
 			<%= @question.content %>
 		</p>
 
 	<ul id="#question-comments">
 		<% @question.comments.each do |comment| %>
-			<li style="color:green;"><%= comment.content %></li>
+			<li><%= comment.content %> - votes: (<%= comment.votes.reduce(0) {|total, vote| total + vote.value } %>)</li>
 		<% end %>
 	</ul>
 
@@ -16,12 +16,12 @@
 
 		<ul>
 			<% @question.answers.each do |answer| %>
-				<li style="color:blue;"><%= answer.content %></li>
+				<li><%= answer.content %></li>
 				<p>Comments:</p>
 
 					<ul>
 						<% answer.comments.each do |comment| %>
-							<li style="color:green;"><%= comment.content %></li>
+							<li><%= comment.content %> - votes: (<%= comment.votes.reduce(0) {|total, vote| total + vote.value } %>)</li>
 						<% end %>
 					</ul>
 			<% end %>
@@ -30,3 +30,6 @@
 
 
 </div>
+
+
+<!-- Reminder, turn vote count into method in model -->
