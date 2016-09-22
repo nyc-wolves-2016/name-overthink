@@ -10,7 +10,9 @@
         <button type="submit" name="value" value="up_vote" class="thumbs_button">&#128077</button>
       </form>
 
+
       <%= Vote.vote_count(question.votes) %>
+
 
       <form method="post" action='/votes/new' class="">
         <input type="hidden" name="question_id" value="<%= question.id %>">
@@ -18,7 +20,7 @@
       </form><a href="/questions/<%= question.id %>"><%= question.title %></a>
 
       </li>
-
+        <%= erb :'shared/_delete_button', locals: {item: question}, layout: false %>
 		<% end %>
 		</ul>
 </div>

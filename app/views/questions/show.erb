@@ -35,8 +35,8 @@
 						<% end %>
 					</ul><br>
 		</ul>
-		<% if @answer_errors && @bad_answer_id == answer.id %>
-				<% @answer_errors.each do |error| %>
+		<% if @answer_comment_errors && @bad_answer_id == answer.id %>
+				<% @answer_comment_errors.each do |error| %>
 				<%= error %>
 			<% end %>
 		<% end %>
@@ -44,9 +44,21 @@
 			<label for="comment">Make a comment: </label>
 			<input type="text" name="content">
 			<input type="submit" value="Comment"><br>
-		</form>
+		</form><br>
 			<% end %>
 
+
+		<% if @answer_errors %>
+			<% @answer_errors.each do |error| %>
+				<%= error %>
+			<% end %>
+		<% end %>
+
+		<form action='/questions/<%= @question.id %>/answers/new' method="post">
+			<label for="comment">Have another answer to this question? Post below. </label><br><br>
+			<textarea rows="10" cols="50" name="content"></textarea><br>
+			<input type="submit" value="Comment"><br>
+		</form>
 
 </div>
 
