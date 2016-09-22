@@ -1,4 +1,4 @@
-20.times do
+10.times do
   user = User.create!(
     username: Faker::Internet.user_name,
     first_name: Faker::Name.first_name,
@@ -7,35 +7,70 @@
     password: "password")
 end
 
-20.times do
-  question = Question.create!(
+User.all.each do |user|
+  5.times do
+  user.questions.create(
     content: Faker::Lorem.sentence,
-    title: Faker::Name.title,
-    user_id: rand(1..20))
+    title: Faker::Name.title
+    )
+  end
 end
 
-20.times do
-  answer = Answer.create!(
-    content: Faker::Lorem.sentence,
-    question_id: rand(1..20),
-    user_id: rand(1..20))
+Question.all.each do |question|
+  user_array = (1..User.all.count).to_a
+
+  rand(5..8).times do
+
+    question.answers.create(
+      content: Faker::Lorem.sentence,
+      user_id: rand(1..10)
+    )
+
+    question.comments.create(
+      content: Faker::Lorem.sentence,
+      user_id: rand(1..10)
+    )
+
+    question.votes.create(
+      value: [1,-1].sample,
+      user_id: user_array.delete(user_array.sample)
+    )
+
+  end
+end
+
+Answer.all.each do |answer|
+  user_array = (1..User.all.count).to_a
+
+  rand(5..8).times do 
+
+    answer.comments.create(
+      content: Faker::Lorem.sentence,
+      user_id: rand(1..10)
+    )
+
+    answer.votes.create(
+      value: [1,-1].sample,
+      user_id: user_array.delete(user_array.sample)
+    )
+
+  end
+end
+
+Comment.all.each do |comment|
+  user_array = (1..User.all.count).to_a
+
+  rand(1..3).times do 
+
+  comment.votes.create(
+      value: [1,-1].sample,
+      user_id: user_array.delete(user_array.sample)
+    )
+  end
+  
 end
 
 
 
-u= User.create(first_name: "boe", last_name: "jenkins", username: "yaBoi", email: "jaBoi@gmail.com", password: "password")
-
-bob= User.create(first_name: "bob", last_name: "billy", username: "billybob", email: "bob@gmail.com", password: "password")
-
-q= Question.create(title: "Fake question", content: "testing 123", user_id: 1)
 
 
-a= Answer.create(content: "This is my answer", user_id: 2, question_id: 1)
-
-c = a.comments.create(content:"I see what you mean", user_id: 1)
-
-q.comments.create(content:"Dude are you f-ing serious? Youre so dumb, but I'll answerr", user_id: 2)
-a.votes.create(value: 1, user_id: 1)
-
-q.votes.create(value: 1, user_id: 2)
-c.votes.create(value: 1, user_id: 2)
