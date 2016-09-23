@@ -1,7 +1,7 @@
 
-	<h1><%= @question.title %></h1>
+	<h1 style="color: #f19f4d"><%= @question.title %></h1>
 
-		<p style="color:blue">
+		<p style="color: #f19f4d">
 			<%= @question.content %>
 		</p>
 
@@ -34,17 +34,17 @@
 
 
         <div class="answers">
-				<li style="color:red">
+				<li style="color: black">
 					<form method="post" action='/votes/new' class="thumbs_button">
 	        	<input type="hidden" name="answer_id" value="<%= answer.id %>">
-	        	<button type="submit" name="value" value="up_vote" class="thumbs_button">&#128077</button>
+	        	<button type="submit" name="value" value="up_vote" class="thumbs_button">&#128077;</button>
 	      	</form>
 
 	      	<span class="vote_count"><%= Vote.vote_count(answer.votes) %></span>
 
 		      <form method="post" action='/votes/new' class="thumbs_button">
 		        <input type="hidden" name="answer_id" value="<%= answer.id %>">
-		        <button type="submit" name="value" value="down_vote" class="thumbs_button">&#128078</button>
+		        <button type="submit" name="value" value="down_vote" class="thumbs_button">&#128078;</button>
 		      </form>
 
 				<%= answer.content %>
@@ -56,7 +56,7 @@
 				<% end %>
 				<%= erb :'shared/_best_answer', locals: {item: @question, answer: answer}, layout: false %>
 
-				<p style="color:green">Comments:</p>
+				<p>Comments:</p>
 
 					<ul>
 						<% answer.comments.each do |comment| %>
