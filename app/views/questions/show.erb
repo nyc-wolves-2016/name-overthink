@@ -5,7 +5,7 @@
 			<%= @question.content %>
 		</p>
 
-	<ul id="#question-comments">
+	<ul id="question-comments">
 		<% @question.comments.each do |comment| %>
 			<li>
 				<form method="post" action='/votes/new' class="thumbs_button">
