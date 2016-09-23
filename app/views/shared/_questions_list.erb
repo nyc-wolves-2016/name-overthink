@@ -1,10 +1,6 @@
-
-
-<div class="container">
-
-		<ul class="questionsList">
-		<p><% questions.each do |question| %></p>
-			<li>
+    <ul class="questionsList">
+    <% questions.each do |question| %>
+      <li>
       <form method="post" action='/votes/new' class="thumbs_button">
         <input type="hidden" name="question_id" value="<%= question.id %>">
         <button type="submit" name="value" value="up_vote" class="thumbs_button">&#128077</button>
@@ -19,8 +15,7 @@
       <a href="/questions/<%= question.id %>"><%= question.title %></a>
       <%= erb :'shared/_delete_button', locals: {item: question}, layout: false %>
       </li>
-        
-		<% end %>
-		</ul>
-</div>
+
+    <% end %>
+    </ul>
 
