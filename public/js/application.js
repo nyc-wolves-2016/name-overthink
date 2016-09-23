@@ -1,6 +1,7 @@
 $(document).ready(function() {
   $('.questionsList').on('submit', '.thumbs_button', function(e) {
     e.preventDefault();
+    $(".questionsList").find('p').remove();
     var data = {question_id: $(this).children('input').attr('value'), value: $(this).children('button').attr('value')};
     
     $.ajax({
@@ -8,7 +9,12 @@ $(document).ready(function() {
       method: "POST",
       data: data
     }).done(function(response) {
+        if (response.error) {
+            $("input[value='" + response.question_id + "']").closest('li').append('<p>You already voted on that question silly-pie</p>');
+            $('.questionsList').find('p').css({ color : 'red'})
+        } else {
         $("input[value='" + response.question_id + "']").closest('li').children('span').text(response.total_votes);
+        }
     })
   });
 

@@ -24,10 +24,14 @@ post '/votes/new' do
       redirect '/questions'
       end
     else
-  #ajaxify?
-      @questions = Question.all
-      @errors = vote.errors.full_messages
-      erb :'/shared/_questions_list', locals: {questions: @questions}
+      if request.xhr?
+        content_type :json
+        {question_id: params[:question_id], total_votes: Vote.vote_count(Question.find_by(id: params[:question_id]).votes), error: true}.to_json
+      else   
+        @questions = Question.all
+        @errors = vote.errors.full_messages
+        erb :'/shared/_questions_list', locals: {questions: @questions}
+      end 
     end
   else
     if params[:answer_id]
