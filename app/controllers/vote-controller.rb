@@ -34,8 +34,6 @@ post '/votes/new' do
       vote = Answer.find(params[:answer_id]).votes.new(value: value, user_id: current_user.id)
       question_id = Answer.find(params[:answer_id]).question_id
     else
-      puts "WE DO INDEED GET TO THIS POINT GOOD SIR/LADY"
-      
       vote = Comment.find(params[:comment_id]).votes.new(value: value, user_id: current_user.id)
       question_id = find_question(Comment.find(params[:comment_id]))
     end  
@@ -52,10 +50,14 @@ post '/votes/new' do
         redirect "/questions/#{question_id}"
       end 
     else
-  #ajaxify?
       if request.xhr?
-        content_type :json
-        {comment_id: params[:comment_id], total_votes: Vote.vote_count(Comment.find_by(id: params[:comment_id]).votes), error: true}.to_json
+        if vote.voteable_type == "Answer"
+          content_type :json
+          {answer_id: params[:answer_id], total_votes: Vote.vote_count(Answer.find_by(id: params[:answer_id]).votes), error: true}.to_json
+        else 
+          content_type :json
+          {comment_id: params[:comment_id], total_votes: Vote.vote_count(Comment.find_by(id: params[:comment_id]).votes), error: true}.to_json
+        end
       else
         @question = Question.find(question_id)
         @errors = vote.errors.full_messages
