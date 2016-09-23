@@ -29,6 +29,7 @@ article a.vote-button {
   background: none;
   display: inline;
   margin-right: 3px;
+  color: red;
 }
 
 .vote_count {
@@ -143,6 +144,10 @@ li a, a:visited {
 
 ul {
   list-style: none;
+}
+
+li {
+  display: inline-block;
 }
 
 

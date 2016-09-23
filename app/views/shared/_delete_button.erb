@@ -2,7 +2,7 @@
         <li>
           <form method="post" action="/<%= item.class.name.downcase %>s/<%= item.id %>" class="  inline">
             <input type="hidden" name="_method" value="delete">
-            <input type="submit" value="delete">
+            <button type="submit" value="delete" class="thumbs_button"></button>
           </form>
         </li>
 <% end %>
