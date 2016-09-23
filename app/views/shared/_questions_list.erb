@@ -3,14 +3,14 @@
       <li>
       <form method="post" action='/votes/new' class="thumbs_button">
         <input type="hidden" name="question_id" value="<%= question.id %>">
-        <button type="submit" name="value" value="up_vote" class="thumbs_button">&#128077</button>
+        <button type="submit" name="value" value="up_vote" class="thumbs_button">&#128077;</button>
       </form>
 
       <span class="vote_count"><%= Vote.vote_count(question.votes) %></span>
 
       <form method="post" action='/votes/new' class="thumbs_button">
         <input type="hidden" name="question_id" value="<%= question.id %>">
-        <button type="submit" name="value" value="down_vote" class="thumbs_button">&#128078</button>
+        <button type="submit" name="value" value="down_vote" class="thumbs_button">&#128078;</button>
       </form>
       <a class="test" href="/questions/<%= question.id %>"><%= question.title %></a>
       <%= erb :'shared/_delete_button', locals: {item: question}, layout: false %>

@@ -343,6 +343,8 @@ footer {
   height: 150px;
   border-top: 3px solid #a9a9a9;
   color: #f19f4d;
+  margin-bottom: 0px;
+  display: block;
 
 }
 
@@ -355,12 +357,26 @@ footer p {
 
 .footer {
   margin-left: 200px;
-  position: relative; 
+  /*position: relative; */
 }
+
+/*.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}*/
 
 a {
   text-decoration: none;
   color: #f19f4d;
+}
+
+.empty {
+  height: 400px;
 }
 
 

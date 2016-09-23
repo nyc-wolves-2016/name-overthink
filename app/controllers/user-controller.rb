@@ -17,6 +17,7 @@ get '/users/login' do
   if logged_in?
     redirect "/users/#{current_user.id}"
   else
+    session[:login] = true
     erb :'/session/login'
   end
 end
