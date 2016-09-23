@@ -3,7 +3,7 @@ $(document).ready(function() {
     e.preventDefault();
     $(".questionsList").find('p').remove();
     var data = {question_id: $(this).children('input').attr('value'), value: $(this).children('button').attr('value')};
-    
+
     $.ajax({
       url: "/votes/new",
       method: "POST",
@@ -22,7 +22,7 @@ $(document).ready(function() {
     e.preventDefault();
     var data = {comment_id: $(this).children('input').attr('value'), value: $(this).children('button').attr('value')};
     $("#question-comments").find('p').remove();
-    
+
     $.ajax({
       url: "/votes/new",
       method: "POST",
@@ -37,7 +37,7 @@ $(document).ready(function() {
         }
     })
   });
-    
+
   $('.answers').on('submit', '.thumbs_button', function(e) {
     e.preventDefault();
     var data = {answer_id: $(this).children('input').attr('value'), value: $(this).children('button').attr('value')};
@@ -58,4 +58,79 @@ $(document).ready(function() {
   });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  $('#question-comment-form').on('submit', function(event) {
+    event.preventDefault();
+    var data = $(this).serialize();
+    var url = $(this).attr('action');
+
+    $.ajax({
+      url: url,
+      method: 'POST',
+      data: data
+    }).done(function(response) {
+    // debugger;
+      $('#question-comments').find("li").last().after(response);
+    });
+  });
+
+  $('.answer-comment-form').on('submit', function(event) {
+    event.preventDefault();
+    var data = $(this).serialize();
+    var url = $(this).attr('action');
+    // debugger;
+    $.ajax({
+      url: url,
+      method: 'POST',
+      data: data
+    }).done(function(response) {
+      $(event.target).siblings('.answer-comments').find("li").last().after(response);
+    });
+  });
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

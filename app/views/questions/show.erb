@@ -7,27 +7,18 @@
 
 	<ul id="question-comments">
 		<% @question.comments.each do |comment| %>
-			<li>
-				<form method="post" action='/votes/new' class="thumbs_button">
-        	<input type="hidden" name="comment_id" value="<%= comment.id %>">
-        	<button type="submit" name="value" value="up_vote" class="thumbs_button">&#128077</button>
-      	</form>
-      	
-      	<span class="vote_count"><%= Vote.vote_count(comment.votes) %></span>
 
-	      <form method="post" action='/votes/new' class="thumbs_button">
-	        <input type="hidden" name="comment_id" value="<%= comment.id %>">
-	        <button type="submit" name="value" value="down_vote" class="thumbs_button">&#128078</button>
-	      </form>	
-			<%= comment.content %></li>
-		<% end %><br>
+				<%= erb :'shared/_votes_comment', locals: {comment: comment}, layout: false %>
+
+		<% end %>
+		<br>
 		<% if @question_errors %>
 			<% @question_errors.each do |error| %>
 				<%= error %>
 			<% end %>
 		<% end %>
 	</ul>
-		<form action='/questions/<%= @question.id %>/comments/new'method="post">
+		<form action='/questions/<%= @question.id %>/comments/new'method="post" id="question-comment-form">
 			<label for="comment">Make a comment: </label>
 			<input type="text" name="content">
 			<input type="submit" value="Comment"><br>
@@ -37,14 +28,18 @@
 <h2>Answers:</h2>
 
 			<% @question.answers.each do |answer| %>
-		<ul>
-			<div class="answers">
+
+			<div>
+		<ul class="answer-comments">
+
+
+        <div class="answers">
 				<li style="color:red">
 					<form method="post" action='/votes/new' class="thumbs_button">
 	        	<input type="hidden" name="answer_id" value="<%= answer.id %>">
 	        	<button type="submit" name="value" value="up_vote" class="thumbs_button">&#128077</button>
 	      	</form>
-	      	
+
 	      	<span class="vote_count"><%= Vote.vote_count(answer.votes) %></span>
 
 		      <form method="post" action='/votes/new' class="thumbs_button">
@@ -55,6 +50,7 @@
 				<%= answer.content %>
 				</li>
 			</div>
+
 				<% if answer.id == @question.best_answer_id %>
 					<div>Marked as best answer</div>
 				<% end %>
@@ -64,20 +60,8 @@
 
 					<ul>
 						<% answer.comments.each do |comment| %>
-							<li>
-								<form method="post" action='/votes/new' class="thumbs_button">
-				        	<input type="hidden" name="comment_id" value="<%= comment.id %>">
-				        	<button type="submit" name="value" value="up_vote" class="thumbs_button">&#128077</button>
-				      	</form>
-				      	
-				      	<span class="vote_count"><%= Vote.vote_count(comment.votes) %></span>
 
-					      <form method="post" action='/votes/new' class="thumbs_button">
-					        <input type="hidden" name="comment_id" value="<%= comment.id %>">
-					        <button type="submit" name="value" value="down_vote" class="thumbs_button">&#128078</button>
-					      </form>
-							<%= comment.content %>
-							</li>
+						<%= erb :'shared/_answers_comment', locals: {comment: comment}, layout: false %>
 						<% end %>
 					</ul><br>
 		</ul>
@@ -86,11 +70,12 @@
 				<%= error %>
 			<% end %>
 		<% end %>
-		<form action='/questions/<%= @question.id %>/answer/<%= answer.id %>/new' method="post">
+		<form action='/questions/<%= @question.id %>/answer/<%= answer.id %>/new' method="post" class="answer-comment-form">
 			<label for="comment">Make a comment: </label>
 			<input type="text" name="content">
 			<input type="submit" value="Comment"><br>
 		</form><br>
+	</div>
 			<% end %>
 
 		<% if @answer_errors %>
