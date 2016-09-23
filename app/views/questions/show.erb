@@ -1,9 +1,9 @@
 
 	<h1><%= @question.title %></h1>
 
-		<p style="color:blue">
+		<div style="color:blue">
 			<%= @question.content %>
-		</p>
+		</div>
 
 	<ul id="question-comments">
 		<% @question.comments.each do |comment| %>

@@ -1,8 +1,8 @@
   <% if user_logged_in?(item.user_id) %>
-        <li>
+
           <form method="post" action="/<%= item.class.name.downcase %>s/<%= item.id %>" class="  inline">
             <input type="hidden" name="_method" value="delete">
             <button type="submit" value="delete" class="thumbs_button">&#128465;</button>
           </form>
-        </li>
+
 <% end %>

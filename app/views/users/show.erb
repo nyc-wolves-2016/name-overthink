@@ -5,26 +5,32 @@
 
   <%= erb :'shared/_questions_list', locals: {questions: @user.questions}, layout: false %>
 
-<% if !@user.answers.empty? %>
-  <h2>Questions You've Answered (<%= @user.answers.count %>):</h2>
-  <div class= "user_answers">
+  <% if !@user.answers.empty? %>
 
+  <h2>Questions You've Answered (<%= @user.answers.count %>):</h2>
+
+    <div class= "user_answers">
     <ul class="questions_answered">
       <p>
       </p>
         <% @user.answers.each do |answer| %>
           <li><a href="/questions/<%= answer.question.id %>"><%= answer.question.title %></a></li>
-          <p>You answered:</p>
-          <p><%= answer.content %></p>
-      <%= erb :'shared/_delete_button', locals: {item: answer}, layout: false %>
+            <p>
+              You answered:
+            </p>
+            <p>
+              <%= answer.content %>
+            </p>
+            <%= erb :'shared/_delete_button', locals: {item: answer}, layout: false %>
         <% end %>
       </ul>
-  </div>
+    </div>
 <% else %>
 
   <p>User has no answers!</p>
 
 <% end  %>
+
 <% if !@user.comments.empty?  %>
   <h2>Comments You've Made (<%= @user.comments.count %>):</h2>
   <div class= "user_comments">
