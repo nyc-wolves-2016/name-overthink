@@ -47,12 +47,12 @@
 		        <button type="submit" name="value" value="down_vote" class="thumbs_button">&#128078</button>
 		      </form>
 
-				<%= answer.content %>
+				<span class=""><%= answer.content %></span>
 				</li>
 			</div>
 
 				<% if answer.id == @question.best_answer_id %>
-					<div>Marked as best answer</div>
+					<div>&#127941 MARKED AS BEST ANSWER</div>
 				<% end %>
 				<%= erb :'shared/_best_answer', locals: {item: @question, answer: answer}, layout: false %>
 

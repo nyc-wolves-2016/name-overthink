@@ -54,10 +54,8 @@
     <% end %>
   </div>
 
-  <h2>Votes Casted:</h2>
-  <div class = "user_votes">
-    <%= @user.votes.count %>
-  </div>
+  <h2>Votes Casted:    <%= @user.votes.count %></h2>
+
 
 <% else %>
   <p>Oops... You're trying to see something you can't.</p>
