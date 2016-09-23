@@ -3,8 +3,11 @@ post '/questions/:question_id/comments/new' do
   @question_comment = @question.comments.new(content: params[:content], user_id: current_user.id)
 
   if @question_comment.save
-
-    redirect "/questions/#{@question.id}"
+    if request.xhr?
+      erb :'/shared/_votes_comment', locals: {comment: @question_comment}, layout: false
+    else
+      redirect "/questions/#{@question.id}"
+    end
   else
     @question_errors = @question_comment.errors.full_messages
     @question.comments.delete(@question_comment)
