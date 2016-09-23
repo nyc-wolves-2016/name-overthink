@@ -12,7 +12,7 @@
         <input type="hidden" name="question_id" value="<%= question.id %>">
         <button type="submit" name="value" value="down_vote" class="thumbs_button">&#128078</button>
       </form>
-      <a href="/questions/<%= question.id %>"><%= question.title %></a>
+      <a class="test" href="/questions/<%= question.id %>"><%= question.title %></a>
       <%= erb :'shared/_delete_button', locals: {item: question}, layout: false %>
       </li>
 

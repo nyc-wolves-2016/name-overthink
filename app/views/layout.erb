@@ -22,7 +22,9 @@
     <div>
       <header>
       <nav>
+        <div class="logo"><div class="left_bracket2">&lt;</div><div class="question_mark2">&#63;</div><div class="right_bracket2">&gt;</div></div>
           <% if logged_in? %>
+          <span class="nav_links_span">
             <a class="nav_links" href="/users/<%= current_user.id %>"><%= current_user.username %></a>
             <a class="nav_links"href="/users/logout">Logout</a>
             <a class="nav_links" href="/questions/new">Ask a Question</a>
@@ -31,7 +33,11 @@
             <a class="nav_links"href="/users/login">Login</a>
           <% end %>
           <a class="nav_links"href="/">Home</a>
+          </span class="nav_links">
+
       </nav>
+        
+
     </header>
 
 
@@ -39,12 +45,25 @@
 
 
 
-</div>
-  <%= erb :'/shared/_errors', locals: {errors: @errors}, layout: false %>
+  </div>
+    <%= erb :'/shared/_errors', locals: {errors: @errors}, layout: false %>
 
-<div class="container">
-  <%= yield %>
-</div>
+  <div class="container">
+    <%= yield %>
+  </div>
+  <footer>
+  <div class="logo_footer"><div class="left_bracket">&lt;</div><div class="question_mark">&#63;</div><div class="right_bracket">&gt;</div></div>
+    <div class= "footer">
+    <p>&lt;weare name-overthink&gt;</p>
+    <ul> 
+      <li>&lt;git co -b akhinchey&gt;</li>
+      <li>&lt;git co -b neelgupta2&gt;</li>
+      <li>&lt;git co -b kimberlysuazo&gt;</li>
+      <li>&lt;git co -b soreasy&gt;</li>
+    </ul>
+    </div>
 
+    
+  </footer>
 </body>
 </html>
