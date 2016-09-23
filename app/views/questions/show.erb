@@ -28,22 +28,25 @@
 <h2>Answers:</h2>
 
 			<% @question.answers.each do |answer| %>
-		<ul>
-				<li style="color:red">
-					<form method="post" action='/votes/new' class="thumbs_button">
-	        	<input type="hidden" name="answer_id" value="<%= answer.id %>">
-	        	<button type="submit" name="value" value="up_vote" class="thumbs_button">&#128077</button>
-	      	</form>
+			<div>
+		<ul class="answer-comments">
 
-	      	<span class="vote_count"><%= Vote.vote_count(answer.votes) %></span>
 
-		      <form method="post" action='/votes/new' class="thumbs_button">
-		        <input type="hidden" name="answer_id" value="<%= answer.id %>">
-		        <button type="submit" name="value" value="down_vote" class="thumbs_button">&#128078</button>
-		      </form>
+        <li style="color:red">
+          <form method="post" action='/votes/new' class="thumbs_button">
+            <input type="hidden" name="answer_id" value="<%= answer.id %>">
+            <button type="submit" name="value" value="up_vote" class="thumbs_button">&#128077</button>
+          </form>
 
-				<%= answer.content %>
-				</li>
+          <span class="vote_count"><%= Vote.vote_count(answer.votes) %></span>
+
+          <form method="post" action='/votes/new' class="thumbs_button">
+            <input type="hidden" name="answer_id" value="<%= answer.id %>">
+            <button type="submit" name="value" value="down_vote" class="thumbs_button">&#128078</button>
+          </form>
+
+        <%= answer.content %>
+        </li>
 				<% if answer.id == @question.best_answer_id %>
 					<div>Marked as best answer</div>
 				<% end %>
@@ -53,20 +56,8 @@
 
 					<ul>
 						<% answer.comments.each do |comment| %>
-							<li>
-								<form method="post" action='/votes/new' class="thumbs_button">
-				        	<input type="hidden" name="comment_id" value="<%= comment.id %>">
-				        	<button type="submit" name="value" value="up_vote" class="thumbs_button">&#128077</button>
-				      	</form>
 
-				      	<span class="vote_count"><%= Vote.vote_count(comment.votes) %></span>
-
-					      <form method="post" action='/votes/new' class="thumbs_button">
-					        <input type="hidden" name="comment_id" value="<%= comment.id %>">
-					        <button type="submit" name="value" value="down_vote" class="thumbs_button">&#128078</button>
-					      </form>
-							<%= comment.content %>
-							</li>
+						<%= erb :'shared/_answers_comment', locals: {comment: comment}, layout: false %>
 						<% end %>
 					</ul><br>
 		</ul>
@@ -75,11 +66,12 @@
 				<%= error %>
 			<% end %>
 		<% end %>
-		<form action='/questions/<%= @question.id %>/answer/<%= answer.id %>/new' method="post">
+		<form action='/questions/<%= @question.id %>/answer/<%= answer.id %>/new' method="post" class="answer-comment-form">
 			<label for="comment">Make a comment: </label>
 			<input type="text" name="content">
 			<input type="submit" value="Comment"><br>
 		</form><br>
+	</div>
 			<% end %>
 
 		<% if @answer_errors %>

@@ -61,6 +61,20 @@ $(document).ready(function() {
       $('#question-comments').find("li").last().after(response);
     });
   });
+
+  $('.answer-comment-form').on('submit', function(event) {
+    event.preventDefault();
+    var data = $(this).serialize();
+    var url = $(this).attr('action');
+    // debugger;
+    $.ajax({
+      url: url,
+      method: 'POST',
+      data: data
+    }).done(function(response) {
+      $(event.target).siblings('.answer-comments').find("li").last().after(response);
+    });
+  });
 });
 
 
